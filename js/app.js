@@ -7,6 +7,7 @@ $(function() {
 
   $('.icon').click(function () {
       $('aside').slideToggle();
+      mapview.renderAllMarks();
 
   });
 
