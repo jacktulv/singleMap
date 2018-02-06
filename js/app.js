@@ -1,6 +1,15 @@
 $(function() {
   var map;
 
+  var mapErrorHandler=function () {
+      alert("connect google failed need mofa");
+  }
+
+  $('.icon').click(function () {
+      $('aside').slideToggle();
+
+  });
+
   const client_id='OZPUIUWVXYZF5VJUZQS5A01FN2CUKCVXCW2RKQUMBNMGIA5F';
   const client_secret='VYZOK3E15J3U32JF3OVTSOFTSUTFY2MEFXNS54JBKG25YWFN';
   var  initlocations=[
@@ -32,7 +41,9 @@ $(function() {
                 data:{'v':'20180101','query':marker.title,'limit':'2','near':'Shanghai','client_id':client_id,'client_secret':client_secret},
                 type:'POST',
                 dataType:'jsonp',
-              }).done(editcontent);
+              }).done(editcontent)
+              .fail(function() { alert("error"); });
+
 
               function editcontent (data) {
                 let content=`${results[0].formatted_address}<br>
@@ -62,9 +73,7 @@ $(function() {
     //初始地图
     initMap:function () {
       //隐藏侧栏
-        $('.icon').click(function () {
-            $('aside').slideToggle();
-        });
+
         //地图定到上海
         map=new google.maps.Map(document.getElementById('map'),{
         center:{lat:31.244242,lng: 121.487648},

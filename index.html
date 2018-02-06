@@ -22,7 +22,7 @@
           <div class="filter-title">
             <h2 class="asidetitle">Interesting in Shanghai</h2>
             <input type="text" placeholder="type sitename Example: The Bund"  id="area-tex" data-bind="event:{blur:showInputmarker}" >
-            <span class="filter"  data-bind="click:showallmarker">Filter<i class="iconfont icon-filter"></i></span>
+            <span class="filter"  data-bind="click:showallmarker">ShowAll<i class="iconfont icon-filter"></i></span>
             <ul data-bind="foreach: obmarkers">
                 <li data-bind="text:title,click:$parent.showOnemarker"></li>
             </ul>
@@ -42,7 +42,7 @@
   <script type='text/javascript' src='js/knockout-3.5.0beta.js'></script>
   <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
   <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN1C_R-8z4zKYpv7LzzP94vV8uUdKQuwg&libraries=places,drawing&v=3">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN1C_R-8z4zKYpv7LzzP94vV8uUdKQuwg&libraries=places,drawing&v=3" onerror="mapErrorHandler()">
   </script>
 
 
