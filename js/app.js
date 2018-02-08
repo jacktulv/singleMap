@@ -1,15 +1,12 @@
 $(function() {
   var map;
 
-  var mapErrorHandler=function () {
-      alert("connect google failed need mofa");
-  }
+  var mapErrorHandler=  function   () {
+    alert("connect google failed need mofa");
+    }
 
-  $('.icon').click(function () {
-      $('aside').slideToggle();
-      mapview.renderAllMarks();
 
-  });
+
 
   const client_id='OZPUIUWVXYZF5VJUZQS5A01FN2CUKCVXCW2RKQUMBNMGIA5F';
   const client_secret='VYZOK3E15J3U32JF3OVTSOFTSUTFY2MEFXNS54JBKG25YWFN';
@@ -149,6 +146,8 @@ $(function() {
   var ViewModel=function () {
     var self=this;
 
+    //监听输入
+    self.inputplace="";
 
   //试着用ko但是没绑起来，  self.inputplace=ko.observable("");
 
@@ -164,6 +163,22 @@ $(function() {
     self.initobmarkers();
 
 
+    //默认显示侧栏
+    var flag=true;
+    self.shouldShowaside=ko.observable(flag);
+
+    //显示侧栏事件
+    self.showaside=function () {
+      if(flag){
+        self.shouldShowaside(!flag);
+        mapview.renderAllMarks();
+      }
+      self.shouldShowaside(!flag);
+      flag=!flag;
+
+      mapview.renderAllMarks();
+    }
+
     //单击选中当前位置
     self.showOnemarker=function (location) {
               self.obmarkers.remove(function (item) {
@@ -173,14 +188,16 @@ $(function() {
     };
 
     //处理输入框查询
-    self.showInputmarker=function () {
-          var inputplace=$("#area-tex").val();
-          self.obmarkers.remove(function (item) {
-          return item.title!=inputplace;
-      });
-          mapview.renderMarks(inputplace);
+    self.showInputmarker=function (d,e) {
+        if(e.keyCode == 13){
+            self.obmarkers.remove(function (item) {
+            return item.title!=self.inputplace;
+          });
+            mapview.renderMarks(self.inputplace);
 
-    };
+          };
+        }
+
 
     //显示所有位置
     self.showallmarker=function () {

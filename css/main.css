@@ -22,6 +22,7 @@ aside {
   width: 20%;
   height: 100%;
   margin:0;
+  display: flex;
 }
 
 li:hover {
@@ -48,7 +49,7 @@ li:hover {
   height: 15%;
 }
 .asidetitle {
-  position: relative;
+
   color:#e4dbdb;
   height:50%;
   width: 100%;

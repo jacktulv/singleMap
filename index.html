@@ -7,21 +7,24 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <script src="js/iconfont.js"></script>
+
     <style type="text/css">
     .icon {
        width: 1em; height: 1em;
        vertical-align: -0.15em;
        fill: currentColor;
        overflow: hidden;
+       font-size: 2.5em;
+
       }
     </style>
   </head>
   <body>
     <main>
-        <aside>
+        <aside data-bind="visible: shouldShowaside">
           <div class="filter-title">
             <h2 class="asidetitle">Interesting in Shanghai</h2>
-            <input type="text" placeholder="type sitename Example: The Bund"  id="area-tex" data-bind="event:{blur:showInputmarker}" >
+            <input type="text" placeholder="type sitename Example: The Bund"  id="area-tex" data-bind="textInput:inputplace ,event:{keyup:showInputmarker}">
             <span class="filter"  data-bind="click:showallmarker">ShowAll<i class="iconfont icon-filter"></i></span>
             <ul data-bind="foreach: obmarkers">
                 <li data-bind="text:title,click:$parent.showOnemarker"></li>
@@ -30,23 +33,25 @@
         </aside>
         <section class="mainmap">
           <header class="mapheader">
-            <svg class="icon" aria-hidden="true">
+            <svg class="icon" aria-hidden="true"  data-bind="click:showaside">
               <use xlink:href="#icon-menu"></use>
             </svg>
           </header>
           <div id="map">
           </div>
         </section>
+        <script type='text/javascript'>
+              function mapErrorHandler  () {
+              alert("googleapis  not available");
+          }
+        </script>
     </main>
   </body>
   <script type='text/javascript' src='js/knockout-3.5.0beta.js'></script>
   <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
-  <script
+  <script 
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN1C_R-8z4zKYpv7LzzP94vV8uUdKQuwg&libraries=places,drawing&v=3" onerror="mapErrorHandler()">
   </script>
-
-
-
   <script src="js/app.js" type="text/javascript"></script>
 
 </html>
