@@ -57,8 +57,11 @@ li:hover {
 }
 
 .filter {
+  display: block;
   width: 24%;
+  font-size:16px;
 }
+
 
 .filter:hover {
   cursor:pointer;
@@ -77,11 +80,25 @@ li:hover {
 
 @media screen and (max-width:1000px) {
   aside {
-      width:0;
+      width:25%;
   }
 
   .asidetitle {
     position: relative;
     color:#e4dbdb;
+  }
+
+  .filter {
+    display: block;
+    width: 100%;
+    font-size:20px;
+    margin-right: 10px;
+  }
+
+  .input-serch-place {
+    display: block;
+    width: 100%;
+    height:4em;
+    margin:auto;
   }
 }
